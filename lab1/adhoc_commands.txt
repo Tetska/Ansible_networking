@@ -1,3 +1,81 @@
-ansible all -m cisco.ios.ios_command -a "commands='show ip interface brief'"
+maxik@Sunrise:~/Ansible_networking/lab1$ ansible all -m cisco.ios.ios_command -a "commands='show ip interface brief'"
 ansible all -m cisco.ios.ios_command -a "commands='show arp'"
 ansible all -m cisco.ios.ios_command -a "commands='show ip route'"
+SSH password:
+devnetsandboxiosxec8k.cisco.com | SUCCESS => {
+    "changed": false,
+    "stdout": [
+        "Interface              IP-Address      OK? Method Status                Protocol\nGigabitEthernet1       10.10.20.148    YES NVRAM  up                    up      \nGigabitEthernet2       unassigned      YES NVRAM  up                    up      \nGigabitEthernet3       unassigned      YES NVRAM  administratively down down    \nLoopback0              10.0.0.1        YES manual up                    up      \nLoopback12             10.1.1.12       YES other  up                    up      \nLoopback13             10.2.1.13       YES other  up                    up      \nLoopback90             99.99.99.91     YES manual up                    up      \nLoopback99             99.99.99.99     YES other  up                    up      \nLoopback151            10.151.0.1      YES manual up                    up      \nLoopback176            10.176.0.3      YES manual up                    up"
+    ],
+    "stdout_lines": [
+        [
+            "Interface              IP-Address      OK? Method Status                Protocol",
+            "GigabitEthernet1       10.10.20.148    YES NVRAM  up                    up      ",
+            "GigabitEthernet2       unassigned      YES NVRAM  up                    up      ",
+            "GigabitEthernet3       unassigned      YES NVRAM  administratively down down    ",
+            "Loopback0              10.0.0.1        YES manual up                    up      ",
+            "Loopback12             10.1.1.12       YES other  up                    up      ",
+            "Loopback13             10.2.1.13       YES other  up                    up      ",
+            "Loopback90             99.99.99.91     YES manual up                    up      ",
+            "Loopback99             99.99.99.99     YES other  up                    up      ",
+            "Loopback151            10.151.0.1      YES manual up                    up      ",
+            "Loopback176            10.176.0.3      YES manual up                    up"
+        ]
+    ]
+}
+SSH password:
+devnetsandboxiosxec8k.cisco.com | SUCCESS => {
+    "changed": false,
+    "stdout": [
+        "Protocol  Address          Age (min)  Hardware Addr   Type   Interface\nInternet  10.10.20.148            -   0050.56bf.f8b1  ARPA   GigabitEthernet1\nInternet  10.10.20.254            5   0050.56bf.85d9  ARPA   GigabitEthernet1"
+    ],
+    "stdout_lines": [
+        [
+            "Protocol  Address          Age (min)  Hardware Addr   Type   Interface",
+            "Internet  10.10.20.148            -   0050.56bf.f8b1  ARPA   GigabitEthernet1",
+            "Internet  10.10.20.254            5   0050.56bf.85d9  ARPA   GigabitEthernet1"
+        ]
+    ]
+}
+SSH password:
+devnetsandboxiosxec8k.cisco.com | SUCCESS => {
+    "changed": false,
+    "stdout": [
+        "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP\n       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       H - NHRP, G - NHRP registered, g - NHRP registration summary\n       o - ODR, P - periodic downloaded static route, l - LISP\n       a - application route\n       + - replicated route, % - next hop override, p - overrides from PfR\n       & - replicated local route overrides by connected\n\nGateway of last resort is 10.10.20.254 to network 0.0.0.0\n\nS*    0.0.0.0/0 [1/0] via 10.10.20.254\n      10.0.0.0/8 is variably subnetted, 11 subnets, 2 masks\nC        10.0.0.0/24 is directly connected, Loopback0\nL        10.0.0.1/32 is directly connected, Loopback0\nC        10.1.1.0/24 is directly connected, Loopback12\nL        10.1.1.12/32 is directly connected, Loopback12\nC        10.2.1.0/24 is directly connected, Loopback13\nL        10.2.1.13/32 is directly connected, Loopback13\nC        10.10.20.0/24 is directly connected, GigabitEthernet1\nL        10.10.20.148/32 is directly connected, GigabitEthernet1\nC        10.151.0.0/24 is directly connected, Loopback151\nL        10.151.0.1/32 is directly connected, Loopback151\nC        10.176.0.3/32 is directly connected, Loopback176\n      99.0.0.0/32 is subnetted, 2 subnets\nC        99.99.99.91 is directly connected, Loopback90\nC        99.99.99.99 is directly connected, Loopback99"
+    ],
+    "stdout_lines": [
+        [
+            "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP",
+            "       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ",
+            "       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2",
+            "       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP",
+            "       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA",
+            "       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2",
+            "       ia - IS-IS inter area, * - candidate default, U - per-user static route",
+            "       H - NHRP, G - NHRP registered, g - NHRP registration summary",
+            "       o - ODR, P - periodic downloaded static route, l - LISP",
+            "       a - application route",
+            "       + - replicated route, % - next hop override, p - overrides from PfR",
+            "       & - replicated local route overrides by connected",
+            "",
+            "Gateway of last resort is 10.10.20.254 to network 0.0.0.0",
+            "",
+            "S*    0.0.0.0/0 [1/0] via 10.10.20.254",
+            "      10.0.0.0/8 is variably subnetted, 11 subnets, 2 masks",
+            "C        10.0.0.0/24 is directly connected, Loopback0",
+            "L        10.0.0.1/32 is directly connected, Loopback0",
+            "C        10.1.1.0/24 is directly connected, Loopback12",
+            "L        10.1.1.12/32 is directly connected, Loopback12",
+            "C        10.2.1.0/24 is directly connected, Loopback13",
+            "L        10.2.1.13/32 is directly connected, Loopback13",
+            "C        10.10.20.0/24 is directly connected, GigabitEthernet1",
+            "L        10.10.20.148/32 is directly connected, GigabitEthernet1",
+            "C        10.151.0.0/24 is directly connected, Loopback151",
+            "L        10.151.0.1/32 is directly connected, Loopback151",
+            "C        10.176.0.3/32 is directly connected, Loopback176",
+            "      99.0.0.0/32 is subnetted, 2 subnets",
+            "C        99.99.99.91 is directly connected, Loopback90",
+            "C        99.99.99.99 is directly connected, Loopback99"
+        ]
+    ]
+}
