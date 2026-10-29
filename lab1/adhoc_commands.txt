@@ -1,0 +1,3 @@
+ansible all -m cisco.ios.ios_command -a "commands='show ip interface brief'"
+ansible all -m cisco.ios.ios_command -a "commands='show arp'"
+ansible all -m cisco.ios.ios_command -a "commands='show ip route'"
