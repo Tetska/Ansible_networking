@@ -1,0 +1,23 @@
+---
+- name: Lab 2 cleanup - remove what lab02 created
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Remove loopback
+      cisco.ios.ios_config:
+        lines:
+          - "no interface Loopback{{ student_id }}"
+      notify: Save config
+
+    - name: Remove syslog and NTP servers
+      cisco.ios.ios_config:
+        lines:
+          - "no logging host {{ syslog_server }}"
+          - "no ntp server {{ ntp_server }}"
+      notify: Save config
+
+  handlers:
+    - name: Save config
+      cisco.ios.ios_config:
+        save_when: always

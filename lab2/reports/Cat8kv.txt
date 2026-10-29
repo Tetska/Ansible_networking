@@ -1,0 +1,5 @@
+Hostname: Cat8kv
+Model: C8000V
+IOS type: IOS-XE
+IOS version: 17.15.04c
+Serial number: 9XLWRY40A2V

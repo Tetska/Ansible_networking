@@ -1,0 +1,67 @@
+---
+- name: Lab 2 - configure IOS XE sandbox
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Gather device facts
+      cisco.ios.ios_facts:
+
+    - name: Create local folders
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/{{ item }}"
+        state: directory
+      loop: [reports, backups]
+      delegate_to: localhost
+      run_once: true
+
+    - name: Write device report
+      ansible.builtin.copy:
+        dest: "{{ playbook_dir }}/reports/{{ ansible_facts['net_hostname'] }}.txt"
+        content: |
+          Hostname: {{ ansible_facts['net_hostname'] }}
+          Model: {{ ansible_facts['net_model'] }}
+          IOS type: {{ ansible_facts['net_iostype'] }}
+          IOS version: {{ ansible_facts['net_version'] }}
+          Serial number: {{ ansible_facts['net_serialnum'] }}
+      delegate_to: localhost
+
+    - name: Backup running config
+      cisco.ios.ios_config:
+        backup: true
+        backup_options:
+          dir_path: "{{ playbook_dir }}/backups"
+          filename: "{{ ansible_facts['net_hostname'] }}.txt"
+      changed_when: false
+
+    - name: Configure loopback
+      cisco.ios.ios_config:
+        parents: "interface Loopback{{ student_id }}"
+        lines:
+          - "description Student {{ student_id }} loopback"
+          - "ip address {{ loopback_ip }} 255.255.255.0"
+      notify: Save config
+
+    - name: Configure syslog server
+      cisco.ios.ios_config:
+        lines:
+          - "logging host {{ syslog_server }}"
+      notify: Save config
+
+    - name: Configure NTP server
+      cisco.ios.ios_config:
+        lines:
+          - "ntp server {{ ntp_server }}"
+      notify: Save config
+
+    - name: Configure service timestamps
+      cisco.ios.ios_config:
+        lines:
+          - "service timestamps debug datetime msec"
+          - "service timestamps log datetime msec"
+      notify: Save config
+
+  handlers:
+    - name: Save config
+      cisco.ios.ios_config:
+        save_when: always

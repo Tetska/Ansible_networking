@@ -1,0 +1,5 @@
+---
+student_id: 151
+loopback_ip: "10.{{ student_id }}.0.1"
+ntp_server: "10.{{ student_id }}.0.10"
+syslog_server: "10.{{ student_id }}.0.20"
